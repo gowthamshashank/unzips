@@ -42,7 +42,7 @@
 
            sudo rm -rf /usr/loca/bin/minikube
 
-        In Mac:
+        In Macos:
      
            brew install minikube
 
@@ -58,7 +58,7 @@
 
     Step:-1  Download docker on your local system
              
-             CMD:- sudo apt-get install docker
+             CMD:- sudo apt-get install docker.io
 
     Step:-2  Login to docker Hub
 
@@ -74,4 +74,35 @@
 
     Step:-  Go to browers and serach
 
-            https://localhost:8080                               
+            https://localhost:8080    
+
+
+3)  Create a simple application in docker image and push it to the docker hub repo
+ 
+    Step:-1  Install docker on the system
+     
+             apt-get install docker.io
+
+    Step:-2  run the command 
+
+             docker run -it --name centos centos /bin/sh
+
+    Step:-3  Create an image from this running container:
+
+             docker commit <container_id/container_name> <docker_id/image_name:tag> 
+
+    Step:-4  login to docker hub account
+     
+             docker login
+
+    Step:-5  Push the image to the docker hub
+
+             docker push your_docker_id/ image_name:tag> 
+
+    Step:-6  Delete the image in the local
+
+             docker rm -f$(docker ps -aq)                 
+
+                                        
+    
+
