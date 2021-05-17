@@ -1,0 +1,44 @@
+What is minikube?
+A) Minikube. Like kind , minikube is a tool that lets you run Kubernetes locally. 
+   Minikube runs a single-node Kubernetes cluster on your personal computer 
+   (including Windows, macOS and Linux PCs)
+
+--> Install MiniKube:-
+     --> Requirments to downloads minikube in the systemis
+         --> 2CUPS or more
+         --> 2GB free memory
+         --> 20GB of free disk space.
+         --> Container (or) Virtual Machine Manager such as, Docker, Hyper-V, KVM, VirtualBox, (or) VMWare, etc.
+
+--> Steps for Installing MiniKube:-
+    --> we can install minikube in(Mac, Windows, Linux)
+
+    Step 1:- Install Kubectl
+             we should check whether the virtualization is there are not on your local system by using this cmd
+
+             sysctl -a | grep machdep.cpu.features
+
+             --> brew install Kubectl
+
+    Step 2:- Install hyperVisor
+
+    Step 3:- Install Minikube
+
+    Step 4:- Start MiniKube
+             used to start Cluster
+             create and configure a virtual Machine that runs a single-node Kubernetes cluster
+             also configure your Kubectl installion to communicate with this cluster
+
+
+--> Running Kubernetes via minikube:-
+    Step 1:- create a Kubernetes Deployment using an existing image
+
+    Step 2:- Expose the deployment as a service
+
+    Step 3:- Check the nodes and pods
+
+    Step 4;- Delete service and Deployment
+
+    Step 5:- Stop MiniKube Cluster
+
+    Step 6:- Delete MiniKube Cluster                     
