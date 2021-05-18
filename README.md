@@ -310,9 +310,9 @@
 
                    environment{
 
-                       DOCKER_USERNAME = 'brainupgrade'
+                       DOCKER_USERNAME = ''
 
-                       DOCKER_PASSWORD = credentials('docker-brainupgrade')
+                       DOCKER_PASSWORD = credentials('')
 
                    }
                    stages {
@@ -366,6 +366,23 @@
              Create Jenkins Credentials (type: Secret text) using the above access token say github-bu-token
 
              Configure the GitHub Server here http://localhost:8080/configure.
+
+
+6) create a r base container on docker and run any r script on it.
+
+    Step:-1  To install the r server  using docker image 
+     
+             $  docker run -detach -p 8002:8787 -e PASSWORD=YOUR_PASSWORD –name my-rstudio  YOUR_DOCKER/IMAGE_NAME .
+
+    Step:-2  To check the image is created or not
+
+             $ docker ps -all
+
+    Step:-3  https://localhost:port_id 
+
+    Step:-4  Push to docker hub repo
+
+             $ docker push  YOUR_DOCKER/IMAGE_NAME          
 
          
 
