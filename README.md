@@ -414,6 +414,43 @@
              $ docker push docker_hub_name/image_name
 
 
+8) Connect from your local machine to a postgresql database in docker
+
+    Step:-1  Pull the postgresql image from docker hub
+     
+             $ docker pull postgresql
+
+     Step:-2  U have given the host and port numbers username password
+
+              $ docker run -d –name dev-postgres -e  POSTGRES_PASSWORD=Pass2021! -v $
+                {HOME}/postgres-data/:var/lib/postgresql/data/ -p 5432:5432     postgres         
+
+    Step:-3  Now exec the postgressql with docker cmd which we have created the contaired
+
+             $  docker exec -it dev-postgres bash
+             $  psql -h localhost -U postgres
+
+    Step:-4  Now start the pgadmin  instance
+
+             $ docker pull dpage/pgadmin4
+
+    Step:-5 now run the created container
+
+            $ docker run -p 80:80 -e ‘PGADMIN_DEFAULT_EMAIL=user@domain.local’ -e ‘PGADMIN_DEFAULT_PASSWORD=SuperSecret’ --name  dev-pgadmin -d dpage/  pgadmin4               
+
+    Step:-6 check the container is created or not 
+     
+            $ docker ps
+
+    Step:-7 we will need to look the ipaddress of postgres using docker inspect command
+
+            $ docker inspect dev-postgres -f “{{json .NetworkSettings.Networks}}”
+
+    Step:-8  https://ipaddress:port
+
+    
+                    
+     
 
 
 
