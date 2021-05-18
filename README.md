@@ -227,3 +227,51 @@
 
           ----->>>>  Login with the username (admin) and password you have from the previous command.                 
 
+
+5) How to setup scalable jenkins on top of a kubernetes cluster and pipeline for automated ci cd (jenkins - github integration)
+
+     https://github.com/shashank3656/scaling-jenkins/tree/master/scalling-jenkins/master
+
+    Step:-1 Download this is folder from github
+
+    Step:-2 $ git clone https://github.com/shashank3656/scaling-jenkins/tree/master/scalling-jenkins/
+
+    Step:-3 build a docker image for jenkins
+
+            $ cd scalling-jenkins
+
+            $ docker build -t shashank3656/jenkins .
+
+    Step:- 4 push the docker image to docker hub repo
+
+             $ docker push shashank3656/jenkins
+
+
+    Step:-5 First lets create namespace with name jenkins
+
+            $ kubectl create ns jenkins
+
+    Step:-6 Now lets set namespace to jenkins by below command
+
+            $ kubectl config view | grep namespace
+            
+            $ kubectl config set-context --current --namespace=jenkins
+
+    Step:-7 Then apply deploymet and service which are present in master folder, if you want persistent jenkins use files present in master-Persistent
+
+            $ kubectl create -f .
+
+    Step:-8 check jenkins-master pod is up and running or not
+
+             $ kubectl get pods -o wide
+
+    Step:-9 as you can see jenkins-master pod is running on kube-node-1 so to access jenkins get node ip and service port 
+
+            https://kube-node-1_ip:service_port
+
+    Step:-10 Once after jenkins up and running, navigate to Manage Jenkins --> Configure System ( make sure usage set to 
+             "only build jobs with label expresions    matching this node" ) --> cloud        
+              
+              ---->>>>  In Configure cloud page select kubernetes
+
+              
