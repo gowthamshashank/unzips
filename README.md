@@ -448,8 +448,23 @@
 
     Step:-8  https://ipaddress:port
 
-    
-                    
+
+9) Try to run docker in docker container and push to docker hub?
+
+    Step:-1  pull the image from docker hub
+
+             $ docker pull docker
+
+    Step:-2  change the name of the image of docker using tag
+
+            $ docker tag imageid –name docker_hubname/image_name
+             
+            $ docker run -it docker_hubname/image_name  
+
+    Step:-4 push the image to the dokcer hub
+
+            $ docker push docker_hub_name/image_name        
+         
      
 
 
