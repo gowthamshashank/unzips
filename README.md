@@ -139,7 +139,7 @@
                     limits:
                       memory: 294Mi
 
-   Step:-2  Install Helm, The package manager for Kubernetes 
+    Step:-2  Install Helm, The package manager for Kubernetes 
 
             $ curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
 
@@ -147,12 +147,12 @@
 
             $ ./get_helm.sh                      
     
-   Step:-3  Create separate namespace for Monitoring
+    Step:-3  Create separate namespace for Monitoring
     
             $ kubectl create namespace monitoring
 
 
-   Step:-4  Deploy Prometheus using Helm Chart
+    Step:-4  Deploy Prometheus using Helm Chart
 
              $ helm install stable/prometheus --namespace monitoring
 
@@ -161,7 +161,7 @@
 
              $ kubectl get pods -n monitoring
 
-   Step:-5  Deploy Grafana using Helm Chart
+    Step:-5  Deploy Grafana using Helm Chart
 
              Create a config.yaml file with the following content:-
 
@@ -208,7 +208,7 @@
 
           $ kubectl get pods -n monitoring 
 
-   Step:-6 Get the Grafana Password
+    Step:-6 Get the Grafana Password
 
             To know the password run the following command :-
             
