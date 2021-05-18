@@ -274,4 +274,98 @@
               
               ---->>>>  In Configure cloud page select kubernetes
 
-              
+              ---->>>>  Configure Kubernetes details and Pod templates by clicking on each one of them
+
+              --->>>>>  get kubernetes url by running kubectl cluster-info get url and click on test connection.  
+                        after clicking on it, you should see Connected   Kubernetes
+
+              --->>>>   if you face any problem in this step checkout https://issues.jenkins.io/browse/JENKINS-55788 or
+                        https://stackoverflow.com/questions/47973570/kubernetes-log-user-systemserviceaccountdefaultdefault-cannot-get-services
+
+                        Next get service url and provide the same in jenkins. Save it
+
+              --->>>>  Next configure pod template and container details as show in below picture
+
+    Step:-11 Set Up Global Credentials
+
+             To test the docker commands especially login, first set up the global credentials        
+
+    Step:-12 After create jenkins pipeline:
+
+             Create Build Job
+
+             Create a docker-test job as a pipeline, click OK, and insert the below text in the pipeline block:   
+
+             pipeline {
+
+                  agent {
+
+                      kubernetes{
+
+                          label 'jenkins-slave'
+
+                      }
+
+                   }
+
+                   environment{
+
+                       DOCKER_USERNAME = 'brainupgrade'
+
+                       DOCKER_PASSWORD = credentials('docker-brainupgrade')
+
+                   }
+                   stages {
+
+                       stage('docker login') {
+
+                            steps{
+
+                                sh(script: """
+
+                                    docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+
+                               """, returnStdout: true) 
+
+                              }
+
+                         }
+
+                      }
+
+                   }      
+         
+
+    Step:-13  Test the Pipeline
+
+              Run the docker-test job and you'll see that a pod will be launched by Jenkins master to run the docker-test build job; the pod will be terminated immediately once the build completes.     
+
+              Once the build job completes, the build pod is terminated.
+
+
+     Step:-14 Install Plugin
+              Also, install the below plugin.
+
+              GitHub pull request builder
+
+              Github Setup
+
+              Now generate an access token using https://github.com/settings/tokens/new (select repo:status)
+
+
+              Create a webhook using your Github repo settings
+
+              Insert https://<Your_Jenkins_Public_URL>/ghprbhook/
+
+              Event trigger—Select individual events (Pull requests, Issue comments) 
+
+              so that whenever any pull request is created, Github can notify your Jenkins URL         
+
+    Step:-15 Jenkins Setup
+         
+             Create Jenkins Credentials (type: Secret text) using the above access token say github-bu-token
+
+             Configure the GitHub Server here http://localhost:8080/configure.
+
+         
+
