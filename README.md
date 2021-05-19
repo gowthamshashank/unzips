@@ -554,7 +554,7 @@
 
 8) Connect from your local machine to a postgresql database in docker
 
-  Docker makes it very easy to spin up a PostgreSQL database management system. With the following command it is possible to start your PostgreSQL Docker container on your server or local machine:
+   Docker makes it very easy to spin up a PostgreSQL database management system. With the following command it is possible to start your PostgreSQL Docker container on your server or local machine:
 
 
   Step:-1  Pull the postgresql image from docker hub
@@ -567,8 +567,8 @@
               $ docker run -d –name dev-postgres -e  POSTGRES_PASSWORD=Pass2021! -v $
                 {HOME}/postgres-data/:var/lib/postgresql/data/ -p 5432:5432     postgres      
 
-   This command will start a PostgreSQL database and map ports using the following pattern: -p <host_port>:<container_port>. 
-   Port 5432 of our container will be mapped on port 5432 of our host or server.
+      This command will start a PostgreSQL database and map ports using the following pattern: -p <host_port>:<container_port>. 
+      Port 5432 of our container will be mapped on port 5432 of our host or server.
                 
 
   Step:-3  Now exec the postgressql with docker cmd which we have created the contaired
