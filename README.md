@@ -501,7 +501,7 @@
      
              $  docker run -detach -p 8002:8787 -e PASSWORD=YOUR_PASSWORD –name my-rstudio  YOUR_DOCKER/IMAGE_NAME .
 
-          There are a few things to note, namely the flags used in the run command:
+  There are a few things to note, namely the flags used in the run command:
 
                 -detach or -d for short, runs the container in the background of your terminal.
 
