@@ -158,7 +158,10 @@
 
 4)  How  to monitoring spring boot application with prometheus and grafana on kubernets cluster   
 
+     
+     ![Screenshot-from-2020-10-07-12-00-04](https://user-images.githubusercontent.com/52821412/118772682-a573b080-b8a1-11eb-86c3-fbf8ccb7fc92.png)
 
+     
     Step:-1 Deploy a Spring Boot application on Kubernetes and expose actuator endpoints
         
             In Kubernetes environment , we can configure annotations which will be used by prometheus to scrap data.Below is the complete deployment.yaml fileI
