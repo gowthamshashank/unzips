@@ -82,15 +82,15 @@
     
     This tutorial shows how to deploy Nginx in a Docker container.
 
-     Prerequisites:-
+      Prerequisites:-
 
-     To containerize Nginx, please complete the following:
+      To containerize Nginx, please complete the following:
     
-     Set up an Ubuntu 14.04 server, preferably with SSH keys for security
+      Set up an Ubuntu 14.04 server, preferably with SSH keys for security
     
-     Set up a sudo user
+      Set up a sudo user
     
-     Verify your kernel version.
+      Verify your kernel version.
 
      Follow these steps:--
 
