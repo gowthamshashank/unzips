@@ -332,12 +332,19 @@
    In this tutorial, you will:
 
    ->Set up a Jenkins environment on Kubernetes
+
    ->Configure a CI/CD Jenkins pipeline
+
    ->Build Docker images using Jenkins
+
    ->Push Docker images to a Docker registry
+
    ->Deploy Docker images to a Kubernetes environment
+
    ->Integrate Jenkins
+
    ->Integrate GitHub and Jenkins using GitHub Tokens 
+   
 
      https://github.com/shashank3656/scaling-jenkins/tree/master/scalling-jenkins/master
 
