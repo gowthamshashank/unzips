@@ -1,8 +1,32 @@
 # unzips
 
 1) Installing Minikube:
+
+      Minikube Start:-
+
+       Minikube is local Kubernetes, focusing on making it easy to learn and develop for Kubernetes.
+ 
+       All you need is Docker (or similarly compatible) container or a Virtual Machine environment, and Kubernetes is a single command away: 
+       
+       minikube start
+
+
+
+      What you’ll need?
+      
+        2 CPUs or more
+      
+        2GB of free memory
+       
+        20GB of free disk space
+      
+        Internet connection
+      
+        Container or virtual machine manager, such as: Docker, Hyperkit, Hyper-V, KVM, Parallels, Podman, VirtualBox, or VMWare
+
      
       In Windows:
+
 
         To install chocolety:
 
@@ -54,7 +78,21 @@
 
            $ brew install kubectl
 
-2)  Create one container in docker with image nginx
+2) Create one container in docker with image nginx
+    
+    This tutorial shows how to deploy Nginx in a Docker container.
+
+     Prerequisites:-
+
+     To containerize Nginx, please complete the following:
+    
+     Set up an Ubuntu 14.04 server, preferably with SSH keys for security
+    
+     Set up a sudo user
+    
+     Verify your kernel version.
+
+     Follow these steps:--
 
     Step:-1  Download docker on your local system
              
