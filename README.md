@@ -159,8 +159,6 @@
 4)  How  to monitoring spring boot application with prometheus and grafana on kubernets cluster   
 
 
-    
-
     Step:-1 Deploy a Spring Boot application on Kubernetes and expose actuator endpoints
         
             In Kubernetes environment , we can configure annotations which will be used by prometheus to scrap data.Below is the complete deployment.yaml fileI
@@ -323,6 +321,24 @@
 
 5) How to setup scalable jenkins on top of a kubernetes cluster and pipeline for automated ci cd (jenkins - github integration)
 
+  Introduction
+
+    DevOps encourages collaboration, cooperation, and communication between developers and operations teams to improve the speed and quality of software development. One of the key principles of DevOps is automation, which reduces human error, provides consistent results, and even mitigates risks. With the help of automation, you and your team can build, test, and deploy software quickly and efficiently.
+
+    In this tutorial, you’ll learn how to achieve a fully automated environment with Jenkins on Kubernetes.
+
+    Learning objectives
+
+   In this tutorial, you will:
+
+   ->Set up a Jenkins environment on Kubernetes
+   ->Configure a CI/CD Jenkins pipeline
+   ->Build Docker images using Jenkins
+   ->Push Docker images to a Docker registry
+   ->Deploy Docker images to a Kubernetes environment
+   ->Integrate Jenkins
+   ->Integrate GitHub and Jenkins using GitHub Tokens 
+
      https://github.com/shashank3656/scaling-jenkins/tree/master/scalling-jenkins/master
 
     Step:-1 Download this is folder from github
@@ -462,6 +478,8 @@
 
 
 6) create a r base container on docker and run any r script on it.
+
+    
 
     Step:-1  To install the r server  using docker image 
      
