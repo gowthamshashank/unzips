@@ -522,15 +522,14 @@
 
              $ docker push  YOUR_DOCKER/IMAGE_NAME
 
-
 7) Study the tutum-hello-world and push docker hub and change the image with your logo.
 
 
-  Step:-1  Create Docker for tutum-helloworld
+   Step:-1  Create Docker for tutum-helloworld
             
               $ docker run -t Your_dockername/image_name .
 
-  Step:-2   After creating the image exec the image and run the command:
+   Step:-2   After creating the image exec the image and run the command:
 
               $ cd /var/www/html
 
@@ -541,14 +540,14 @@
               $ <a href=”index.html”><img src=”img/logo.png” alt=”logo” />
 
  
-  Step:-3  After that run the apache2  command  :
+   Step:-3  After that run the apache2  command  :
 
              $ systemctl start apache2
 
-  Step:-4  https:ip_address:8080
+   Step:-4  https:ip_address:8080
 
 
-  Step:-5  Push the image to docker hub
+   Step:-5  Push the image to docker hub
 
              $ docker push docker_hub_name/image_name
 
