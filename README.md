@@ -344,48 +344,48 @@
    ->Integrate Jenkins
 
    ->Integrate GitHub and Jenkins using GitHub Tokens 
-   
 
-     https://github.com/shashank3656/scaling-jenkins/tree/master/scalling-jenkins/master
 
-    Step:-1 Download this is folder from github
+  https://github.com/shashank3656/scaling-jenkins/tree/master/scalling-jenkins/master
 
-    Step:-2 $ git clone https://github.com/shashank3656/scaling-jenkins/tree/master/scalling-jenkins/
+  Step:-1 Download this is folder from github
 
-    Step:-3 build a docker image for jenkins
+  Step:-2 $ git clone https://github.com/shashank3656/scaling-jenkins/tree/master/scalling-jenkins/
+
+  Step:-3 build a docker image for jenkins
 
             $ cd scalling-jenkins
 
             $ docker build -t shashank3656/jenkins .
 
-    Step:- 4 push the docker image to docker hub repo
+  Step:- 4 push the docker image to docker hub repo
 
              $ docker push shashank3656/jenkins
 
 
-    Step:-5 First lets create namespace with name jenkins
+  Step:-5 First lets create namespace with name jenkins
 
             $ kubectl create ns jenkins
 
-    Step:-6 Now lets set namespace to jenkins by below command
+  Step:-6 Now lets set namespace to jenkins by below command
 
             $ kubectl config view | grep namespace
             
             $ kubectl config set-context --current --namespace=jenkins
 
-    Step:-7 Then apply deploymet and service which are present in master folder, if you want persistent jenkins use files present in master-Persistent
+  Step:-7 Then apply deploymet and service which are present in master folder, if you want persistent jenkins use files present in master-Persistent
 
             $ kubectl create -f .
 
-    Step:-8 check jenkins-master pod is up and running or not
+  Step:-8 check jenkins-master pod is up and running or not
 
              $ kubectl get pods -o wide
 
-    Step:-9 as you can see jenkins-master pod is running on kube-node-1 so to access jenkins get node ip and service port 
+  Step:-9 as you can see jenkins-master pod is running on kube-node-1 so to access jenkins get node ip and service port 
 
             https://kube-node-1_ip:service_port
 
-    Step:-10 Once after jenkins up and running, navigate to Manage Jenkins --> Configure System ( make sure usage set to 
+  Step:-10 Once after jenkins up and running, navigate to Manage Jenkins --> Configure System ( make sure usage set to 
              "only build jobs with label expresions    matching this node" ) --> cloud        
               
               ---->>>>  In Configure cloud page select kubernetes
@@ -402,11 +402,11 @@
 
               --->>>>  Next configure pod template and container details as show in below picture
 
-    Step:-11 Set Up Global Credentials
+  Step:-11 Set Up Global Credentials
 
              To test the docker commands especially login, first set up the global credentials        
 
-    Step:-12 After create jenkins pipeline:
+  Step:-12 After create jenkins pipeline:
 
              Create Build Job
 
@@ -452,14 +452,14 @@
                    }      
          
 
-    Step:-13  Test the Pipeline
+  Step:-13  Test the Pipeline
 
               Run the docker-test job and you'll see that a pod will be launched by Jenkins master to run the docker-test build job; the pod will be terminated immediately once the build completes.     
 
               Once the build job completes, the build pod is terminated.
 
 
-     Step:-14 Install Plugin
+  Step:-14 Install Plugin
               Also, install the below plugin.
 
               GitHub pull request builder
@@ -477,7 +477,7 @@
 
               so that whenever any pull request is created, Github can notify your Jenkins URL         
 
-    Step:-15 Jenkins Setup
+  Step:-15 Jenkins Setup
          
              Create Jenkins Credentials (type: Secret text) using the above access token say github-bu-token
 
@@ -485,31 +485,52 @@
 
 
 6) create a r base container on docker and run any r script on it.
+   
+   Docker and R:-
 
+    There are many different R and RStudio Docker images.
+
+    Official R images can be found here: https://hub.docker.com/_/r-base
+
+    RStudio and Shiny server images can be found here: https://hub.docker.com/u/rocker
+
+    An image can be downloaded using the docker pull command. Alternatively, when docker run is used if the image is not found on your local system it will be downloaded
     
 
-    Step:-1  To install the r server  using docker image 
+  Step:-1  To install the r server  using docker image 
      
              $  docker run -detach -p 8002:8787 -e PASSWORD=YOUR_PASSWORD –name my-rstudio  YOUR_DOCKER/IMAGE_NAME .
 
-    Step:-2  To check the image is created or not
+                There are a few things to note, namely the flags used in the run command:
+
+                -detach or -d for short, runs the container in the background of your terminal.
+
+                --publish or -p forwards the port on your machine to the container’s port. This is important for running RStudio (port 8787) and/or a Shiny server 
+                (port 3838) as a container. It is also important when running multiple containers.
+
+                --name gives a name to your container. This is not necessary but it’s useful for managing containers (stopping, removing, etc..).
+
+                -e is used for environment variables. In this case the variable PASSWORD needs to be provided, any string can be chosen as the password.
+
+  Step:-2  To check the containers currently running on your machine use docker ps --all, you should see similar output to below.
 
              $ docker ps -all
 
-    Step:-3  https://localhost:port_id 
+  Step:-3  https://localhost:port_id 
 
-    Step:-4  Push to docker hub repo
+  Step:-4  Push to docker hub repo
 
              $ docker push  YOUR_DOCKER/IMAGE_NAME
 
 
 7) Study the tutum-hello-world and push docker hub and change the image with your logo.
 
-     Step:-1  Create Docker for tutum-helloworld
+
+  Step:-1  Create Docker for tutum-helloworld
             
               $ docker run -t Your_dockername/image_name .
 
-    Step:-2   After creating the image exec the image and run the command:
+  Step:-2   After creating the image exec the image and run the command:
 
               $ cd /var/www/html
 
@@ -520,14 +541,14 @@
               $ <a href=”index.html”><img src=”img/logo.png” alt=”logo” />
 
  
-    Step:-3  After that run the apache2  command  :
+  Step:-3  After that run the apache2  command  :
 
              $ systemctl start apache2
 
-    Step:-4  https:ip_address:8080
+  Step:-4  https:ip_address:8080
 
 
-    Step:-5  Push the image to docker hub
+  Step:-5  Push the image to docker hub
 
              $ docker push docker_hub_name/image_name
 
