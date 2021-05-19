@@ -86,13 +86,13 @@
 
       To containerize Nginx, please complete the following:
     
-      Set up an Ubuntu 14.04 server, preferably with SSH keys for security
+      Set up an Ubuntu 18.04 or 20.04 server, preferably with SSH keys for security
     
-      Set up a sudo user
-    
-      Verify your kernel version.
+      Switch to the root user by clinkin the command because docker will run on the root user 
 
-     Follow these steps:--
+      $ sudo su
+
+    Follow these steps:--
 
     Step:-1  Download docker on your local system
              
@@ -102,11 +102,11 @@
 
              $ docker login
  
-    Step:-3  Pull the docker image from the docker hub
+    Step:-3  Pull the docker image from the docker hub 
 
              $ docker pull nginx     
 
-    Step:-4  Run the image
+    Step:-4  Run the image on the port which u have given this will run the nigix on the given port
 
              $ docker run -p 8080:80 nginx
 
@@ -116,12 +116,27 @@
 
 
 3)  Create a simple application in docker image and push it to the docker hub repo
- 
+
+    This tutorial shows how to deploy simple application on a  Docker container.
+
+      Prerequisites:-
+
+      To containerize , please complete the following Steps:
+    
+      Set up an Ubuntu 18.04 or 20.04 server, preferably with SSH keys for security
+    
+      Switch to the root user by clinkin the command because docker will run on the root user 
+
+      $ sudo su
+
+    
+    Follow these steps:--
+
     Step:-1  Install docker on the system
      
              $ apt-get install docker.io
 
-    Step:-2  run the command 
+    Step:-2  run the command to the create a centos image and which will run on the bash or zsh or sh
 
              $ docker run -it --name centos centos /bin/sh
 
@@ -142,9 +157,14 @@
              $ docker rm -f$(docker ps -aq)                 
 
 4)  How  to monitoring spring boot application with prometheus and grafana on kubernets cluster   
- 
+
+
+    
+
     Step:-1 Deploy a Spring Boot application on Kubernetes and expose actuator endpoints
         
+            In Kubernetes environment , we can configure annotations which will be used by prometheus to scrap data.Below is the complete deployment.yaml fileI
+
             Docker image which i have spring boot application "shashank3656/spring-boot-prometheus" 
 
             spring-boot-prometheus-deployment.yaml:-
@@ -177,7 +197,14 @@
                     limits:
                       memory: 294Mi
 
-    Step:-2  Install Helm, The package manager for Kubernetes 
+    Step:-2  Install Helm, The package manager for Kubernetes :
+
+            Helm makes it extremely easy to make sure you use up to date versions of Prometheus & Grafana & also makes it a-lot easier to deploy and delete.
+
+            Helm now has an installer script that will automatically grab the latest version of Helm and 
+            "https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3"
+
+            You can fetch that script, and then execute it locally. It’s well documented so that you can read through it and understand what it is doing before you run it.
 
             $ curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
 
@@ -185,13 +212,21 @@
 
             $ ./get_helm.sh                      
     
-    Step:-3  Create separate namespace for Monitoring
+    Step:-3  Create separate namespace for Monitoring:
+
+             Time to monitor
+
+             it’s always good idea to keep related things together, We will create separate namespace in Kubernetes for monitoring and will deploy all monitoring related application under that namespace.
+
+             Create monitoring namespace with following command
     
             $ kubectl create namespace monitoring
 
 
-    Step:-4  Deploy Prometheus using Helm Chart
-
+    Step:-4  Deploy Prometheus using Helm Chart:
+             
+             ---->>> With the help of Helm, We can deploy prometheus using single command.
+             
              $ helm install stable/prometheus --namespace monitoring
 
 
@@ -199,11 +234,23 @@
 
              $ kubectl get pods -n monitoring
 
-    Step:-5  Deploy Grafana using Helm Chart
+    Step:-5  Deploy Grafana using Helm Chart:-
+             
+             When deploying grafana, we need to configure it to read metrics from the right data sources.
+
+             There are two ways of achieving this.
+
+             Deploy Grafana & add the data source afterwards through the UI.
+
+             Add the data source as yaml configs & deploy Grafana. Grafana will use these to automatically configure the data sources when it is provisioned. We are going to take this path as we want everything to be replicate-able without too much manual intervention.
+
+             Grafana takes data sources through yaml configs when it starts up. For more information see here: http://docs.grafana.org/administration/provisioning/#datasources
+
+             When the Grafana Helm chart gets deployed, it will search for any config maps that contain a grafana_datasource label. So we will add one in our config. That is as follow 
 
              Create a config.yaml file with the following content:-
 
-             config.yml:
+             config.yml:-
 
               apiVersion: v1
               kind: ConfigMap
@@ -222,7 +269,13 @@
                    orgId: 1
                    url: http://prometheus-server.monitoring.svc.cluster.local
 
-             Create a values.yaml file with the following content:-
+             Override Grafana value:-
+
+             When Grafana gets deployed and the provisioner runs, the data source provisioner is deactivated. We need to activate it so it searches for our config maps.
+
+             We need to create our own values.yml file to override the datasources search value, so when Grafana is deployed it will search our datasource.yml definition and inject it.
+
+             Create a file called values.yml with the following contents:
 
              values.yaml:-
 
@@ -247,6 +300,8 @@
           $ kubectl get pods -n monitoring 
 
     Step:-6 Get the Grafana Password
+
+            Grafana is deployed with a password. This is good news. But whats the password ?
 
             To know the password run the following command :-
             
